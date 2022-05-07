@@ -25,4 +25,10 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 // OUR CUSTOM ROUTES
-Route::get('admin/dashboard',[AdminController::class,'dashboard']);
+
+Route::prefix('/admin')->group(function(){
+    Route::get('/dashboard',[AdminController::class,'dashboard']);
+    // admin login route
+    Route::match(['get', 'post'],'/login',[AdminController::class,'AdminLogin']);
+});
+
