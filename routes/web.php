@@ -30,6 +30,7 @@ require __DIR__.'/auth.php';
 Route::prefix('/admin')->group(function(){
     Route::group(["middleware"=>["admin"]],function(){
         Route::get('/dashboard',[AdminController::class,'dashboard']);
+        Route::match(['get', 'post'],'/update-admin-password',[AdminController::class,'UpdateAdminPassword']);
         Route::get('/logout',[AdminController::class,'AdminLogout']);
     });
     Route::match(['get', 'post'],'/login',[AdminController::class,'AdminLogin']);

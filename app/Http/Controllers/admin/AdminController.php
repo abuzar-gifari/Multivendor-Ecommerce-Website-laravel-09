@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
@@ -30,4 +31,8 @@ class AdminController extends Controller
         return redirect('/admin/login');
     }
 
+    public function UpdateAdminPassword(Request $request){
+        $adminDetails = Admin::where("email",Auth::guard('admin')->user()->email)->first()->toArray();
+        return view('admin.settings.update_admin_password',compact('adminDetails'));
+    }
 }
