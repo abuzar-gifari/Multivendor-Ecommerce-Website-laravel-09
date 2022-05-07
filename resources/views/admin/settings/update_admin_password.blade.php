@@ -31,7 +31,18 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Update Admin Password</h4>
-                        <form class="forms-sample">
+                        @if (Session::has('error_msg'))
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <strong></strong>{{ Session::get('error_msg') }} 
+                            </div>    
+                        @endif
+                        @if (Session::has('success_msg'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong></strong>{{ Session::get('success_msg') }} 
+                            </div>    
+                        @endif
+                        <form class="forms-sample" method="post" action="{{ url('/admin/update-admin-password') }}">
+                            @csrf
                             <div class="form-group">
                                 <label for="email">Username/Email</label>
                                 <input type="email" readonly class="form-control" id="email" name="email" value="{{ $adminDetails['email'] }}">

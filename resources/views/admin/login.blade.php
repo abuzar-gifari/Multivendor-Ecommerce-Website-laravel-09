@@ -20,7 +20,6 @@
                     <div class="row w-100 mx-0">
                         <div class="col-lg-4 mx-auto">
                             <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-
                                 {{-- SHOW ERROR MESSAGE (LOGIN UNSUCCESS INFORMATION) --}}
                                 @if (Session::has('error_msg'))
                                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
