@@ -26,9 +26,10 @@ require __DIR__.'/auth.php';
 
 // OUR CUSTOM ROUTES
 
+// admin login route
 Route::prefix('/admin')->group(function(){
-    Route::get('/dashboard',[AdminController::class,'dashboard']);
-    // admin login route
+    Route::group(["middleware"=>["admin"]],function(){
+        Route::get('/dashboard',[AdminController::class,'dashboard']);
+    });
     Route::match(['get', 'post'],'/login',[AdminController::class,'AdminLogin']);
 });
-
