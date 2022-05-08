@@ -8,6 +8,7 @@ use App\Models\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Vendor;
+use App\Models\VendorsBankDetails;
 use App\Models\VendorsBusinessDetails;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -170,6 +171,21 @@ class AdminController extends Controller
             }
 
         }else if($slug=="bank"){
+            $vendorDetails = VendorsBankDetails::where("vendor_id",Auth::guard('admin')->user()->vendor_id)->first()->toArray();
+            
+            if ($request->isMethod('post')) {
+
+                $data = $request->all();
+
+                VendorsBankDetails::where('vendor_id',Auth::guard('admin')->user()->vendor_id)->update([
+                    "account_holder_name"=>$data['account_holder_name'],
+                    "bank_name"=>$data['bank_name'],
+                    "account_number"=>$data['account_number'],
+                    "bank_ifsc_code"=>$data['bank_ifsc_code'],
+                ]);
+                
+                return redirect()->back()->with('success_msg',"Information Updated Successfully");    
+            }
             
         }
         return view('admin.settings.update_vendor_details')->with(compact('slug','vendorDetails'));

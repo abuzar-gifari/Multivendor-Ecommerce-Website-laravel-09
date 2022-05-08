@@ -13,6 +13,7 @@
         </div>
         
         @if ($slug=="personal")
+        <h4>Update Personal Details</h4>
         <div class="row">
             <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">
@@ -178,9 +179,46 @@
             </div>
         </div>
         @elseif($slug=="bank")
-            
+        <h4>Update Bank Details</h4>
+        <div class="row">
+            <div class="col-md-6 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        @if (Session::has('error_msg'))
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <strong></strong>{{ Session::get('error_msg') }} 
+                            </div>    
+                        @endif
+                        @if (Session::has('success_msg'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong></strong>{{ Session::get('success_msg') }} 
+                            </div>    
+                        @endif
+                        <form class="forms-sample" method="post" action="{{ url('/admin/update-vendor-details/bank') }}" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-group">
+                                <label for="account_holder_name">Account Holder Name</label>
+                                <input type="text" class="form-control" id="account_holder_name" name="account_holder_name" value="{{ $vendorDetails["account_holder_name"] }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="bank_name">Bank Name</label>
+                                <input type="text" class="form-control" value="{{ $vendorDetails["bank_name"] }}" id="bank_name" name="bank_name">
+                            </div>
+                            <div class="form-group">
+                                <label for="account_number">Account Number</label>
+                                <input type="text" class="form-control" id="account_number" name="account_number" value="{{ $vendorDetails['account_number'] }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="bank_ifsc_code">Bank IFSC Code</label>
+                                <input type="text" class="form-control" id="bank_ifsc_code" name="bank_ifsc_code" value="{{ $vendorDetails['bank_ifsc_code'] }}">
+                            </div>
+                            <button style="width: 100%" type="submit" class="btn btn-primary mr-2">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         @endif
-        
     </div>
     <!-- content-wrapper ends -->
     <!-- partial:partials/_footer.html -->
