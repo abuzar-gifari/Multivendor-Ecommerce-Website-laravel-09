@@ -8,6 +8,7 @@ use App\Models\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Vendor;
+use App\Models\VendorsBusinessDetails;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 // use Intervention\Image\Facades\Image;
@@ -137,7 +138,37 @@ class AdminController extends Controller
                 return redirect()->back()->with('success_msg',"Information Updated Successfully");
             }
         }else if ($slug=="business") {
+            $vendorDetails = VendorsBusinessDetails::where("vendor_id",Auth::guard('admin')->user()->vendor_id)->first()->toArray();
             
+            if ($request->isMethod('post')) {
+                $data = $request->all();
+                if ($request->file('address_proof_image')){
+                    $newName = 'address_proof_'.time().'.'.$request->file('address_proof_image')->getClientOriginalExtension();
+                    $request->address_proof_image->move('admin/images/proofs/',$newName);
+                    
+                    VendorsBusinessDetails::where('vendor_id',Auth::guard('admin')->user()->vendor_id)->update([
+                        "address_proof_image"=>$newName,
+                    ]);    
+                }
+
+                VendorsBusinessDetails::where('vendor_id',Auth::guard('admin')->user()->vendor_id)->update([
+                    "shop_email"=>Auth::guard('admin')->user()->email,
+                    "shop_name"=>$data['shop_name'],
+                    "shop_address"=>$data['shop_address'],
+                    "shop_city"=>$data['shop_city'],
+                    "shop_state"=>$data['shop_state'],
+                    "shop_country"=>$data['shop_country'],
+                    "shop_pincode"=>$data['shop_pincode'],
+                    "shop_mobile"=>$data['shop_mobile'],
+                    "shop_website"=>$data['shop_website'],
+                    "address_proof"=>$data['address_proof'],
+                    "business_license_number"=>$data['business_license_number'],
+                    "gst_number"=>$data['gst_number'],
+                    "pan_number"=>$data['pan_number'],
+                ]);
+                return redirect()->back()->with('success_msg',"Information Updated Successfully");
+            }
+
         }else if($slug=="bank"){
             
         }

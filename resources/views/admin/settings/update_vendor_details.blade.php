@@ -72,7 +72,111 @@
             </div>
         </div>    
         @elseif($slug=="business")
-
+        <h4>Update Business Details</h4>
+        <div class="row">
+            <div class="col-md-6 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        @if (Session::has('error_msg'))
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <strong></strong>{{ Session::get('error_msg') }} 
+                            </div>    
+                        @endif
+                        @if (Session::has('success_msg'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong></strong>{{ Session::get('success_msg') }} 
+                            </div>    
+                        @endif
+                        <form class="forms-sample" method="post" action="{{ url('/admin/update-vendor-details/business') }}" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-group">
+                                <label for="shop_email">Email</label>
+                                <input type="email" readonly class="form-control" id="shop_email" value="{{ $vendorDetails["shop_email"] }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="shop_name">Name</label>
+                                <input type="text" class="form-control" value="{{ $vendorDetails["shop_name"] }}" id="shop_name" name="shop_name">
+                            </div>
+                            <div class="form-group">
+                                <label for="shop_address">Address</label>
+                                <input type="text" class="form-control" id="shop_address" name="shop_address" value="{{ $vendorDetails['shop_address'] }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="shop_city">City</label>
+                                <input type="text" class="form-control" id="shop_city" name="shop_city" value="{{ $vendorDetails['shop_city'] }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="shop_state">State</label>
+                                <input type="text" class="form-control" id="shop_state" name="shop_state" value="{{ $vendorDetails['shop_state'] }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="shop_country">Country</label>
+                                <input type="text" class="form-control" id="shop_country" name="shop_country" value="{{ $vendorDetails['shop_country'] }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="shop_pincode">Pin Code</label>
+                                <input type="text" class="form-control" id="shop_pincode" name="shop_pincode" value="{{ $vendorDetails['shop_pincode'] }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="shop_mobile">Mobile</label>
+                                <input type="text" class="form-control" id="shop_mobile" name="shop_mobile" value="{{ $vendorDetails['shop_mobile'] }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="shop_mobile">Shop Website</label>
+                                <input type="text" class="form-control" id="shop_mobile" name="shop_website" value="{{ $vendorDetails['shop_website'] }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="address_proof">Address Proof</label>
+                                <select name="address_proof" id="address_proof" class="form-control">
+                                    <option value="Passport"
+                                        @if ($vendorDetails['address_proof']=="Passport")
+                                            selected
+                                        @endif
+                                    >Passport</option>
+                                    <option value="Voting Card"
+                                        @if ($vendorDetails['address_proof']=="Voting Card")
+                                            selected
+                                        @endif
+                                    >Voting Card</option>
+                                    <option value="Pan"
+                                        @if ($vendorDetails['address_proof']=="Pan")
+                                            selected
+                                        @endif
+                                    >Pan</option>
+                                    <option value="Driving License"
+                                        @if ($vendorDetails['address_proof']=="Driving License")
+                                            selected
+                                        @endif
+                                    >Driving License</option>
+                                    <option value="Aadhar card"
+                                        @if ($vendorDetails['address_proof']=="Aadhar card")
+                                            selected
+                                        @endif
+                                    >Aadhar card</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="address_proof_image">Address Proof Image</label>
+                                <input type="file" class="form-control" id="address_proof_image" name="address_proof_image">
+                            </div>
+                            <div class="form-group">
+                                <label for="business_license_number">Business License Number</label>
+                                <input type="text" class="form-control" id="business_license_number" name="business_license_number" value="{{ $vendorDetails['business_license_number'] }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="shop_gst_number">GST Number</label>
+                                <input type="text" class="form-control" id="gst_number" name="gst_number" value="{{ $vendorDetails['gst_number'] }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="pan_number">PAN Number</label>
+                                <input type="text" class="form-control" id="pan_number" name="pan_number" value="{{ $vendorDetails['pan_number'] }}">
+                            </div>
+                            <button style="width: 100%" type="submit" class="btn btn-primary mr-2">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         @elseif($slug=="bank")
             
         @endif
