@@ -24,14 +24,14 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-// OUR CUSTOM ROUTES
-
-// admin login route
 Route::prefix('/admin')->group(function(){
     Route::group(["middleware"=>["admin"]],function(){
 
         // admin dashboard route
         Route::get('/dashboard',[AdminController::class,'dashboard']);
+
+        // update admin details route
+        Route::match(['get', 'post'],'/update-admin-details',[AdminController::class,'UpdateAdminDetails']);
 
         // update admin password route
         Route::match(['get', 'post'],'/update-admin-password',[AdminController::class,'UpdateAdminPassword']);

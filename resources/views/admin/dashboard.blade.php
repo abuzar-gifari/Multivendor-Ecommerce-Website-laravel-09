@@ -5,9 +5,19 @@
         <div class="row">
             <div class="col-md-12 grid-margin">
                 <div class="row">
-                    <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                        <h3 class="font-weight-bold">Welcome {{ Auth::guard('admin')->user()->name }}</h3>
-                    </div>
+                    @if (Auth::guard('admin')->user()->type=="superadmin")
+                        <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                            <h3 class="font-weight-bold">Welcome {{ Auth::guard('admin')->user()->name }} (Super Admin)</h3>
+                        </div>    
+                    @elseif (Auth::guard('admin')->user()->type=="vendor")
+                        <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                            <h3 class="font-weight-bold">Welcome {{ Auth::guard('admin')->user()->name }} (Vendor)</h3>
+                        </div>
+                    @else
+                        <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                            <h3 class="font-weight-bold">Welcome Defualt User.</h3>
+                        </div>
+                    @endif
                     <div class="col-12 col-xl-4">
                         <div class="justify-content-end d-flex">
                             <div class="dropdown flex-md-grow-1 flex-xl-grow-0">

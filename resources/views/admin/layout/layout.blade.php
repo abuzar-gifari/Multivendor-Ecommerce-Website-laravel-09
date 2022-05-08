@@ -20,9 +20,12 @@
         <link rel="stylesheet" href="{{ asset('admin') }}/css/vertical-layout-light/style.css">
         <!-- endinject -->
         <link rel="shortcut icon" href="{{ asset('admin') }}/images/favicon.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;500;600;700&display=swap" rel="stylesheet">        
     </head>
     <body>
-        <div class="container-scroller">
+        <div class="container-scroller" style="font-family: 'Work Sans', sans-serif;">
             <!-- partial:partials/_navbar.html -->
             @includeIf('admin.layout.header')
             <!-- partial -->

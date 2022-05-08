@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -30,6 +31,18 @@ class AdminController extends Controller
     public function AdminLogout(Request $request){
         Auth::guard('admin')->logout();
         return redirect('/admin/login');
+    }
+
+    public function UpdateAdminDetails(Request $request){
+        if ($request->isMethod('post')) {
+            // dd($request->all());
+            Admin::where('id',Auth::guard('admin')->user()->id)->update([ 
+                "name"=>$request->admin_name,
+                "mobile"=>$request->admin_mobile,
+            ]);
+            return redirect()->back()->with('success_msg',"Information Updated Successfully");
+        }
+        return view('admin.settings.update_admin_details');
     }
 
     public function UpdateAdminPassword(Request $request){
