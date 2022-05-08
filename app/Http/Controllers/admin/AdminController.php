@@ -60,4 +60,8 @@ class AdminController extends Controller
             return "false";
         }
     }
+
+    public function UpdateVendorDetails($slug){
+        
+    }
 }

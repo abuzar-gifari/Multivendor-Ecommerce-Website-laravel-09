@@ -29,10 +29,22 @@ require __DIR__.'/auth.php';
 // admin login route
 Route::prefix('/admin')->group(function(){
     Route::group(["middleware"=>["admin"]],function(){
+
+        // admin dashboard route
         Route::get('/dashboard',[AdminController::class,'dashboard']);
+
+        // update admin password route
         Route::match(['get', 'post'],'/update-admin-password',[AdminController::class,'UpdateAdminPassword']);
-        Route::get('/logout',[AdminController::class,'AdminLogout']);
+        
+        // check admin password route
         Route::post('/check-admin-password',[AdminController::class,'CheckAdminPassword']);
+        
+        // admin logout route
+        Route::get('/logout',[AdminController::class,'AdminLogout']);
+        
+        // update vendor details route
+        Route::match(['get', 'post'],'/update-vendor-details/{slug}',[AdminController::class,'UpdateVendorDetails']);
+        
     });
     Route::match(['get', 'post'],'/login',[AdminController::class,'AdminLogin']);
 });
