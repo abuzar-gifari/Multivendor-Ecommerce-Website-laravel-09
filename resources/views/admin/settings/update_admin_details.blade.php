@@ -59,6 +59,10 @@
                                 <label for="admin_mobile">Mobile</label>
                                 <input type="text" class="form-control" id="admin_mobile" name="admin_mobile" value="{{ Auth::guard('admin')->user()->mobile }}" placeholder="Enter Your Mobile No">
                             </div>
+                            <div class="form-group">
+                                <label for="admin_img">Image</label><br>
+                                <input type="file" name="admin_img">
+                            </div>
                             <button style="width: 100%" type="submit" class="btn btn-primary mr-2">Submit</button>
                         </form>
                     </div>
