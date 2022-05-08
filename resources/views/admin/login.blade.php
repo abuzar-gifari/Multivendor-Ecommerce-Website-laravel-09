@@ -12,9 +12,13 @@
         <link rel="stylesheet" href="{{ asset('admin') }}/css/vertical-layout-light/style.css">
         <!-- endinject -->
         <link rel="shortcut icon" href="{{ asset('admin') }}/images/favicon.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;500;600;700&display=swap" rel="stylesheet">        
+    
     </head>
     <body>
-        <div class="container-scroller">
+        <div class="container-scroller" style="font-family: 'Work Sans', sans-serif;">
             <div class="container-fluid page-body-wrapper full-page-wrapper">
                 <div class="content-wrapper d-flex align-items-center auth px-0">
                     <div class="row w-100 mx-0">
@@ -27,7 +31,7 @@
                                     </div>    
                                 @endif
                                 
-                                <h6 class="font-weight-light text-center">Admin Login</h6>
+                                <h3 class="font-weight-light text-center">Admin / Vendor Login</h3>
                                 <form class="pt-3" action="{{ url('admin/login') }}" method="POST">
                                     @csrf
                                     <div class="form-group">

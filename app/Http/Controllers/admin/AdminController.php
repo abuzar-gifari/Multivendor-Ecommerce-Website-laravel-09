@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Vendor;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 // use Intervention\Image\Facades\Image;
@@ -100,7 +101,46 @@ class AdminController extends Controller
         }
     }
 
-    public function UpdateVendorDetails($slug){
-        
+    public function UpdateVendorDetails($slug,Request $request){
+        if ($slug=="personal") {
+            $vendorDetails = Vendor::where("id",Auth::guard('admin')->user()->vendor_id)->first()->toArray();
+            // dd($vendorDetails);
+            if ($request->isMethod('post')) {
+                $data = $request->all();
+                // dd($data);
+                $vendorInfo = Auth::guard('admin')->user();
+                // dd($vendorInfo);
+                if ($request->file('vendor_personal_image')){
+                    $newName = 'vendor_'.time().'.'.$request->file('vendor_personal_image')->getClientOriginalExtension();
+                    $request->vendor_personal_image->move('admin/images/vendors/',$newName);
+                    
+                    Admin::where('id',Auth::guard('admin')->user()->id)->update([
+                        "image"=>$newName,
+                    ]);    
+                }
+
+                Admin::where('id',Auth::guard('admin')->user()->id)->update([ 
+                    "name"=>$data['vendor_personal_name'],
+                    "mobile"=>$data['vendor_personal_mobile'],
+                    // "image"=>$newName,
+                ]);
+    
+                Vendor::where('id',Auth::guard('admin')->user()->vendor_id)->update([
+                    "name"=>$data['vendor_personal_name'],
+                    "address"=>$data['vendor_personal_address'],
+                    "city"=>$data['vendor_personal_city'],
+                    "state"=>$data['vendor_personal_state'],
+                    "country"=>$data['vendor_personal_country'],
+                    "pincode"=>$data['vendor_personal_pincode'],
+                    "mobile"=>$data['vendor_personal_mobile']
+                ]);
+                return redirect()->back()->with('success_msg',"Information Updated Successfully");
+            }
+        }else if ($slug=="business") {
+            
+        }else if($slug=="bank"){
+            
+        }
+        return view('admin.settings.update_vendor_details')->with(compact('slug','vendorDetails'));
     }
 }
