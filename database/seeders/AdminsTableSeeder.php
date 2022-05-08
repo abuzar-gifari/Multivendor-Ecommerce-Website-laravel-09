@@ -18,15 +18,15 @@ class AdminsTableSeeder extends Seeder
     {
         $adminRecords=[
             [
-                "id"=>1,
-                "name"=>"Sk Md Abuzar Gifari",
-                "type"=>"superadmin",
-                "vendor_id"=>0,
-                "mobile"=>"01783753653",
-                "email"=>"admin@gmail.com",
+                "id"=>2,
+                "name"=>"Masud",
+                "type"=>"vendor",
+                "vendor_id"=>1,
+                "mobile"=>"01800000000",
+                "email"=>"masud@gmail.com",
                 "password"=>Hash::make('12345'),
                 "image"=>"",
-                "status"=>1
+                "status"=>0
             ]
         ];
         Admin::insert($adminRecords);
