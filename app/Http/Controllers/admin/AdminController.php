@@ -44,15 +44,18 @@ class AdminController extends Controller
         if ($request->isMethod('post')) {
             // dd($request->all());
 
-            // if ($request->hasFile('admin_img')) {
-            //     $image_tmp=$request->file('admin_img');
-            //     if ($image_tmp->isValid()) {
-            //         $extension = $image_tmp->getClientOriginalExtension();
-            //         $imageName = rand(11,99999).".".$extension;
-            //         $imagePath = 'admin/images/photos/'.$imageName;
-            //         // Image::make($image_tmp)->save($imagePath);
-            //     }
-            // }
+            /*
+                if ($request->hasFile('admin_img')) {
+                    $image_tmp=$request->file('admin_img');
+                    if ($image_tmp->isValid()) {
+                        $extension = $image_tmp->getClientOriginalExtension();
+                        $imageName = rand(11,99999).".".$extension;
+                        $imagePath = 'admin/images/photos/'.$imageName;
+                        // Image::make($image_tmp)->save($imagePath);
+                    }
+                }
+            */
+            
             $adminInfo = Auth::guard('admin')->user();
             // dd($adminInfo);
             if ($request->file('admin_img')){
@@ -114,7 +117,7 @@ class AdminController extends Controller
                 // dd($vendorInfo);
                 if ($request->file('vendor_personal_image')){
                     $newName = 'vendor_'.time().'.'.$request->file('vendor_personal_image')->getClientOriginalExtension();
-                    $request->vendor_personal_image->move('admin/images/vendors/',$newName);
+                    $request->vendor_personal_image->move('admin/images/photos/',$newName);
                     
                     Admin::where('id',Auth::guard('admin')->user()->id)->update([
                         "image"=>$newName,
@@ -190,4 +193,26 @@ class AdminController extends Controller
         }
         return view('admin.settings.update_vendor_details')->with(compact('slug','vendorDetails'));
     }
+
+    public function admins($type=null){
+        $admins = Admin::query();
+        // dd($admins);
+        if (!empty($type)) {
+            $admins=$admins->where('type',$type);
+            $title=ucfirst($type);
+        }else {
+            $title="Admins/SubAdmins/Vendors";
+        }
+        $admins=$admins->get()->toArray();
+        // dd($admins);
+        return view('admin.admins.admins')->with(compact('admins','title'));
+    }
+
+    public function ViewVendorDetails($id){
+        $vendorDetails=Admin::with('vendorPersonal','vendorBusiness','vendorBank')->where('id',$id)->first();
+        $vendorDetails=json_decode(json_encode($vendorDetails),true);
+        // dd($vendorDetails);
+        return view('admin.admins.view_vendor_details')->with(compact('vendorDetails'));
+    }
+
 }

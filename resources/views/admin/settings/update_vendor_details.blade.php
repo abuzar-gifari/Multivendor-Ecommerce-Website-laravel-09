@@ -11,7 +11,6 @@
                 </div>
             </div>
         </div>
-        
         @if ($slug=="personal")
         <h4>Update Personal Details</h4>
         <div class="row">
@@ -19,14 +18,14 @@
                 <div class="card">
                     <div class="card-body">
                         @if (Session::has('error_msg'))
-                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                <strong></strong>{{ Session::get('error_msg') }} 
-                            </div>    
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <strong></strong>{{ Session::get('error_msg') }} 
+                        </div>
                         @endif
                         @if (Session::has('success_msg'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <strong></strong>{{ Session::get('success_msg') }} 
-                            </div>    
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong></strong>{{ Session::get('success_msg') }} 
+                        </div>
                         @endif
                         <form class="forms-sample" method="post" action="{{ url('/admin/update-vendor-details/personal') }}" enctype="multipart/form-data">
                             @csrf
@@ -71,7 +70,7 @@
                     </div>
                 </div>
             </div>
-        </div>    
+        </div>
         @elseif($slug=="business")
         <h4>Update Business Details</h4>
         <div class="row">
@@ -79,14 +78,14 @@
                 <div class="card">
                     <div class="card-body">
                         @if (Session::has('error_msg'))
-                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                <strong></strong>{{ Session::get('error_msg') }} 
-                            </div>    
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <strong></strong>{{ Session::get('error_msg') }} 
+                        </div>
                         @endif
                         @if (Session::has('success_msg'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <strong></strong>{{ Session::get('success_msg') }} 
-                            </div>    
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong></strong>{{ Session::get('success_msg') }} 
+                        </div>
                         @endif
                         <form class="forms-sample" method="post" action="{{ url('/admin/update-vendor-details/business') }}" enctype="multipart/form-data">
                             @csrf
@@ -129,31 +128,31 @@
                             <div class="form-group">
                                 <label for="address_proof">Address Proof</label>
                                 <select name="address_proof" id="address_proof" class="form-control">
-                                    <option value="Passport"
-                                        @if ($vendorDetails['address_proof']=="Passport")
-                                            selected
-                                        @endif
-                                    >Passport</option>
-                                    <option value="Voting Card"
-                                        @if ($vendorDetails['address_proof']=="Voting Card")
-                                            selected
-                                        @endif
-                                    >Voting Card</option>
-                                    <option value="Pan"
-                                        @if ($vendorDetails['address_proof']=="Pan")
-                                            selected
-                                        @endif
-                                    >Pan</option>
-                                    <option value="Driving License"
-                                        @if ($vendorDetails['address_proof']=="Driving License")
-                                            selected
-                                        @endif
-                                    >Driving License</option>
-                                    <option value="Aadhar card"
-                                        @if ($vendorDetails['address_proof']=="Aadhar card")
-                                            selected
-                                        @endif
-                                    >Aadhar card</option>
+                                <option value="Passport"
+                                @if ($vendorDetails['address_proof']=="Passport")
+                                selected
+                                @endif
+                                >Passport</option>
+                                <option value="Voting Card"
+                                @if ($vendorDetails['address_proof']=="Voting Card")
+                                selected
+                                @endif
+                                >Voting Card</option>
+                                <option value="Pan"
+                                @if ($vendorDetails['address_proof']=="Pan")
+                                selected
+                                @endif
+                                >Pan</option>
+                                <option value="Driving License"
+                                @if ($vendorDetails['address_proof']=="Driving License")
+                                selected
+                                @endif
+                                >Driving License</option>
+                                <option value="Aadhar card"
+                                @if ($vendorDetails['address_proof']=="Aadhar card")
+                                selected
+                                @endif
+                                >Aadhar card</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -185,14 +184,14 @@
                 <div class="card">
                     <div class="card-body">
                         @if (Session::has('error_msg'))
-                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                <strong></strong>{{ Session::get('error_msg') }} 
-                            </div>    
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <strong></strong>{{ Session::get('error_msg') }} 
+                        </div>
                         @endif
                         @if (Session::has('success_msg'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <strong></strong>{{ Session::get('success_msg') }} 
-                            </div>    
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong></strong>{{ Session::get('success_msg') }} 
+                        </div>
                         @endif
                         <form class="forms-sample" method="post" action="{{ url('/admin/update-vendor-details/bank') }}" enctype="multipart/form-data">
                             @csrf

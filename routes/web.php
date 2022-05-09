@@ -45,6 +45,13 @@ Route::prefix('/admin')->group(function(){
         // update vendor details route
         Route::match(['get', 'post'],'/update-vendor-details/{slug}',[AdminController::class,'UpdateVendorDetails']);
         
+        // view admin/subadmin/vendor
+        Route::get('/admins/{type?}',[AdminController::class,'admins']);
+
+        // view vendor details
+        Route::get('view-vendor-details/{id}',[AdminController::class,'ViewVendorDetails']);
+
+
     });
     Route::match(['get', 'post'],'/login',[AdminController::class,'AdminLogin']);
 });
