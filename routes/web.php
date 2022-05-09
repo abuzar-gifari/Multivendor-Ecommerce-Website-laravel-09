@@ -41,7 +41,10 @@ Route::prefix('/admin')->group(function(){
         
         // admin logout route
         Route::get('/logout',[AdminController::class,'AdminLogout']);
-        
+
+        // update admin status
+        Route::post('/update-admin-status',[AdminController::class,'updateAdminStatus']);
+
         // update vendor details route
         Route::match(['get', 'post'],'/update-vendor-details/{slug}',[AdminController::class,'UpdateVendorDetails']);
         
@@ -50,10 +53,6 @@ Route::prefix('/admin')->group(function(){
 
         // view vendor details
         Route::get('view-vendor-details/{id}',[AdminController::class,'ViewVendorDetails']);
-
-        // update admin status
-        Route::post('/update-admin-status',[AdminController::class,'updateAdminStatus']);
-
 
     });
     Route::match(['get', 'post'],'/login',[AdminController::class,'AdminLogin']);

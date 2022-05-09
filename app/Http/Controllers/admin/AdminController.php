@@ -7,18 +7,20 @@ use App\Models\User;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Country;
 use App\Models\Vendor;
 use App\Models\VendorsBankDetails;
 use App\Models\VendorsBusinessDetails;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 // use Intervention\Image\Facades\Image;
 // use Image;
-
 
 class AdminController extends Controller
 {
     public function dashboard(){
+        Session::put('page','dashboard');
         return view('admin.dashboard');
     }
 
@@ -41,6 +43,7 @@ class AdminController extends Controller
     }
 
     public function UpdateAdminDetails(Request $request){
+        // Session::put('page','update_admin_details');
         if ($request->isMethod('post')) {
             // dd($request->all());
 
@@ -78,6 +81,7 @@ class AdminController extends Controller
     }
 
     public function UpdateAdminPassword(Request $request){
+        // Session::put('page','update_admin_password');
         if ($request->isMethod('post')) {
             $data = $request->all();
             if(Hash::check($data['current_password'],Auth::guard('admin')->user()->password)){
@@ -191,7 +195,8 @@ class AdminController extends Controller
             }
             
         }
-        return view('admin.settings.update_vendor_details')->with(compact('slug','vendorDetails'));
+        $countries=Country::where('status',1)->get()->toArray();
+        return view('admin.settings.update_vendor_details')->with(compact('slug','vendorDetails','countries'));
     }
 
     public function admins($type=null){

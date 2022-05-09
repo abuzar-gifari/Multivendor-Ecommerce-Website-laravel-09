@@ -50,8 +50,22 @@
                                 <input type="text" class="form-control" id="vendor_personal_state" name="vendor_personal_state" value="{{ $vendorDetails['state'] }}">
                             </div>
                             <div class="form-group">
-                                <label for="vendor_personal_country">Country</label>
-                                <input type="text" class="form-control" id="vendor_personal_country" name="vendor_personal_country" value="{{ $vendorDetails['country'] }}">
+                                <label for="country">Country</label>
+                                {{-- <input type="text" class="form-control" id="vendor_personal_country" name="vendor_personal_country" value="{{ $vendorDetails['country'] }}">
+                                 --}}
+                                <select class="form-control" name="vendor_personal_country" id="vendor_personal_country">
+                                    <option value="">Select Country</option>
+                                    @foreach ($countries as $country)
+                                        <option value="{{ $country['country_name'] }}"
+                                        @if ($country['country_name']==$vendorDetails['country'])
+                                            selected
+                                        @endif
+                                        >
+                                            {{ $country['country_name'] }}
+                                        </option>
+                                    @endforeach
+                                </select>
+
                             </div>
                             <div class="form-group">
                                 <label for="vendor_personal_pincode">Pin Code</label>
@@ -111,7 +125,18 @@
                             </div>
                             <div class="form-group">
                                 <label for="shop_country">Country</label>
-                                <input type="text" class="form-control" id="shop_country" name="shop_country" value="{{ $vendorDetails['shop_country'] }}">
+                                <select class="form-control" name="shop_country" id="shop_country">
+                                    <option value="">Select Country</option>
+                                    @foreach ($countries as $country)
+                                        <option value="{{ $country['country_name'] }}"
+                                        @if ($country['country_name']==$vendorDetails['shop_country'])
+                                            selected
+                                        @endif
+                                        >
+                                            {{ $country['country_name'] }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="shop_pincode">Pin Code</label>

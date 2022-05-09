@@ -2,18 +2,18 @@
     <ul class="nav">
         <li class="nav-item">
             <a class="nav-link" href="{{ url('admin/dashboard') }}">
-            <i class="icon-grid menu-icon"></i>
-            <span class="menu-title">Dashboard</span>
+                <i class="icon-grid menu-icon"></i>
+                <span class="menu-title">Dashboard</span>
             </a>
         </li>
         @if (Auth::guard('admin')->user()->type=="vendor")
             <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                <a class="nav-link" data-toggle="collapse" href="#ui-vendors" aria-expanded="false" aria-controls="ui-vendors">
                 <i class="icon-layout menu-icon"></i>
                 <span class="menu-title">Vendor Details</span>
                 <i class="menu-arrow"></i>
                 </a>
-                <div class="collapse" id="ui-basic">
+                <div class="collapse" id="ui-vendors">
                     <ul class="nav flex-column sub-menu">
                         <li class="nav-item"> <a class="nav-link" href="{{ url('admin/update-vendor-details/personal') }}">Personal Details</a></li>
                         <li class="nav-item"> <a class="nav-link" href="{{ url('admin/update-vendor-details/business') }}">Business Details</a></li>
@@ -23,25 +23,29 @@
             </li>    
         @else
             <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-                <i class="icon-layout menu-icon"></i>
-                <span class="menu-title">Setting</span>
-                <i class="menu-arrow"></i>
+                <a class="nav-link" data-toggle="collapse" href="#ui-settings" aria-expanded="false" aria-controls="ui-settings">
+                    <i class="icon-layout menu-icon"></i>
+                    <span class="menu-title">Setting</span>
+                    <i class="menu-arrow"></i>
                 </a>
-                <div class="collapse" id="ui-basic">
+                <div class="collapse" id="ui-settings">
                     <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"> <a class="nav-link" href="{{ url('admin/update-admin-details') }}">Update Details</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="{{ url('admin/update-admin-password') }}">Update Password</a></li>
+                        <li class="nav-item"> 
+                            <a class="nav-link" href="{{ url('admin/update-admin-details') }}">Update Details</a>
+                        </li>
+                        <li class="nav-item"> 
+                            <a class="nav-link" href="{{ url('admin/update-admin-password') }}">Update Password</a>
+                        </li>
                     </ul>
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                <a class="nav-link" data-toggle="collapse" href="#ui-admins" aria-expanded="false" aria-controls="ui-admins">
                 <i class="icon-layout menu-icon"></i>
                 <span class="menu-title">Admin Management</span>
                 <i class="menu-arrow"></i>
                 </a>
-                <div class="collapse" id="ui-basic">
+                <div class="collapse" id="ui-admins">
                     <ul class="nav flex-column sub-menu">
                         <li class="nav-item"> <a class="nav-link" href="{{ url('admin/admins/admin') }}">Admins</a></li>
                         <li class="nav-item"> <a class="nav-link" href="{{ url('admin/admins/subadmin') }}">Sub Admins</a></li>
@@ -51,12 +55,12 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                <a class="nav-link" data-toggle="collapse" href="#ui-users" aria-expanded="false" aria-controls="ui-users">
                 <i class="icon-layout menu-icon"></i>
                 <span class="menu-title">Users Management</span>
                 <i class="menu-arrow"></i>
                 </a>
-                <div class="collapse" id="ui-basic">
+                <div class="collapse" id="ui-users">
                     <ul class="nav flex-column sub-menu">
                         <li class="nav-item"> <a class="nav-link" href="{{ url('admin/users') }}">Users</a></li>
                         <li class="nav-item"> <a class="nav-link" href="{{ url('admin/subscribers') }}">Subscribers</a></li>
