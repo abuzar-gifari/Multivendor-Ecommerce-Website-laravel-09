@@ -15,6 +15,9 @@
             <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">
                     <h4>Personal Details</h4>
+
+                    {{-- FOR VENDOR PERSONAL DETAILS --}}
+
                     <div class="card-body">
                         @if (Session::has('error_msg'))
                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -65,6 +68,9 @@
             <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">
                     <h4>Business Details</h4>
+
+                    {{-- FOR VENDOR BUSINESS DETAILS --}}
+
                     <div class="card-body">
                         @if (Session::has('error_msg'))
                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -138,6 +144,9 @@
             </div>
         </div>
         <h4>Bank Details</h4>
+
+        {{-- FOR VENDOR BANK DETAILS --}}
+
         <div class="row">
             <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">

@@ -51,6 +51,9 @@ Route::prefix('/admin')->group(function(){
         // view vendor details
         Route::get('view-vendor-details/{id}',[AdminController::class,'ViewVendorDetails']);
 
+        // update admin status
+        Route::post('/update-admin-status',[AdminController::class,'updateAdminStatus']);
+
 
     });
     Route::match(['get', 'post'],'/login',[AdminController::class,'AdminLogin']);
