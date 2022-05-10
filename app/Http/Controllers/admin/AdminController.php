@@ -220,6 +220,7 @@ class AdminController extends Controller
         return view('admin.admins.view_vendor_details')->with(compact('vendorDetails'));
     }
 
+    // ADMIN STATUS ( ACTIVE OR INACTIVE ) UPDATED
     public function updateAdminStatus(Request $request){
         if ($request->ajax()) {
             $data = $request->all();

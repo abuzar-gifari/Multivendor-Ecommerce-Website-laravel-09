@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\Admin\SectionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +26,9 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 Route::prefix('/admin')->group(function(){
+
+    Route::match(['get', 'post'],'/login',[AdminController::class,'AdminLogin']);
+    
     Route::group(["middleware"=>["admin"]],function(){
 
         // admin dashboard route
@@ -54,6 +58,11 @@ Route::prefix('/admin')->group(function(){
         // view vendor details
         Route::get('view-vendor-details/{id}',[AdminController::class,'ViewVendorDetails']);
 
+        // sections
+        Route::get('/sections',[SectionController::class,'sections']);
+
+        // update section status
+        Route::post('/update-section-status',[SectionController::class,'updateSectionStatus']);
+
     });
-    Route::match(['get', 'post'],'/login',[AdminController::class,'AdminLogin']);
 });

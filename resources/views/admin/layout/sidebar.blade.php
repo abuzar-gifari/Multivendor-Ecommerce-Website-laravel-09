@@ -67,6 +67,20 @@
                     </ul>
                 </div>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#ui-calalogues" aria-expanded="false" aria-controls="ui-calalogues">
+                <i class="icon-layout menu-icon"></i>
+                <span class="menu-title">Catalogue Management</span>
+                <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="ui-calalogues">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"> <a class="nav-link" href="{{ url('admin/sections') }}">Sections</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ url('admin/categories') }}">Categories</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ url('admin/products') }}">Products</a></li>
+                    </ul>
+                </div>
+            </li>
         @endif
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
