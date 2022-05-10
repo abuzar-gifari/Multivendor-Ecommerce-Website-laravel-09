@@ -18,5 +18,9 @@ class Category extends Model
     public function parentcategory(){
         return $this->belongsTo(Category::class,'parent_id')->select('id','category_name');
     }
+
+    public function subcategories(){
+        return $this->hasMany(Category::class,'parent_id')->where('status',1);
+    }
 }
 

@@ -80,5 +80,9 @@ Route::prefix('/admin')->group(function(){
         // add edit category
         Route::match(['get', 'post'],'/add-edit-category/{id?}',[CategoryController::class,'addEditCategory']);
 
+        // append categories level
+        Route::get('/append-categories-level',[CategoryController::class,'appendCategoriesLevel']);
+
+
     });
 });

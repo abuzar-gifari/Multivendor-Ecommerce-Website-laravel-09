@@ -32,10 +32,12 @@ class CategoryController extends Controller
         if ($id=="") {
             $title = "Add Category";
             $category = new Category();
+            $getCategories=array();
             $message = "Category Added Successfully";
         }else {
             $title = "Edit Category";
             $category = Category::find($id);
+            $getCategories=Category::with('subcategories')->where(['parent_id'=>0,'section_id'=>$category['section_id']])->get();
             $message = "Category Updated Successfully";
         }
 
@@ -64,6 +66,14 @@ class CategoryController extends Controller
         }
 
         $getSections = Section::get()->toArray();
-        return view('admin.categories.add_edit_category')->with(compact('title','category','getSections'));
+        return view('admin.categories.add_edit_category')->with(compact('title','category','getSections','getCategories'));
+    }
+
+    public function appendCategoriesLevel(Request $request){
+        if ($request->ajax()) {
+            $data = $request->all();
+            $getCategories=Category::with('subcategories')->where(['parent_id'=>0,'section_id'=>$data['section_id']])->get()->toArray();
+            return view('admin.categories.append_categories_level')->with(compact('getCategories'));
+        }
     }
 }
