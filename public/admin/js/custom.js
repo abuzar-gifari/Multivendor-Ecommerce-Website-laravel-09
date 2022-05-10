@@ -1,12 +1,15 @@
 $(document).ready(function(){
 
-	// call datatable class
+	/* CALL DATA TABLE CLASS */
+
 	$('#sections').DataTable();
 
 	$(".nav-item").removeClass("active");
 	$(".nav-link").removeClass("active");
 
-	// Check Admin Password is correct or not
+
+	/* CHECK ADMIN PASSWORD IS CORRECT OR NOT */
+
 	$("#current_password").keyup(function(){
 		var current_password = $("#current_password").val();
 		/*alert(current_password);*/
@@ -29,7 +32,9 @@ $(document).ready(function(){
 		});
 	})
 
-	// update admin status
+
+	/* UPDATE THE ADMIN STATUS */
+	
 	$(document).on("click",".updateAdminStatus",function(e){
 		e.preventDefault();
 		
@@ -55,7 +60,9 @@ $(document).ready(function(){
 		})
 	})
 	
-	// update section status
+
+	/* UPDATE THE SECTION STATUS */
+
 	$(document).on("click",".updateSectionStatus",function(e){
 		e.preventDefault();
 		
@@ -81,6 +88,7 @@ $(document).ready(function(){
 		})
 	})
 
+
  	// confirm delete section (simple js)
 	/*
 		$(".confirmDelete").click(function(){
@@ -93,7 +101,9 @@ $(document).ready(function(){
 		})
 	*/
 
-	// confirm delete section (sweetalert js)	
+
+	/* CONFIRM DELETE SECTION (SWEETALERT JS) */
+		
 	$(".confirmDelete").click(function(){
 		var module = $(this).attr('module');
 		var moduleid = $(this).attr('moduleid');
