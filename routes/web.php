@@ -77,6 +77,8 @@ Route::prefix('/admin')->group(function(){
         // update category status
         Route::post('/update-category-status',[CategoryController::class,'updateCategoryStatus']);
 
+        // add edit category
+        Route::match(['get', 'post'],'/add-edit-category/{id?}',[CategoryController::class,'addEditCategory']);
 
     });
 });
