@@ -67,6 +67,8 @@ Route::prefix('/admin')->group(function(){
         // delete section
         Route::get('/delete-section/{id}',[SectionController::class,'DeleteSection']);
 
+        // add edit section
+        Route::match(['get', 'post'],'/add-edit-section/{id?}',[SectionController::class,'addEditSection']);
 
     });
 });

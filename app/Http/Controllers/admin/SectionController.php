@@ -30,4 +30,28 @@ class SectionController extends Controller
         Section::where('id',$id)->delete();
         return redirect()->back()->with('success_msg','section deleted successfully');
     }
+    
+    public function addEditSection(Request $request,$id=null){
+        if ($id=="") {
+            $title = "Add Section";
+            $section = new Section();
+            $message = "Section Added Successfully";
+        }else {
+            $title = "Add Section";
+            $section = Section::find($id);
+            $message = "Section Updated Successfully";
+        }
+
+        if ($request->isMethod('post')) {
+            $data = $request->all();
+            // dd($data);
+            $section->name=$data['section_name'];
+            $section->status=1;
+            $section->save();
+
+            return redirect()->back()->with('success_msg',$message);
+        }
+
+        return view('admin.sections.add_edit_section')->with(compact('title','section'));
+    }
 }

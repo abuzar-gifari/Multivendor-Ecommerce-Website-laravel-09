@@ -7,6 +7,11 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Sections</h4>
+
+                        <a href="{{ url('admin/add-edit-section') }}" class="btn btn-block btn-primary" style="max-width:150px; float:right; display:inline-block;">
+                            Add Section
+                        </a>
+
                         <p class="card-description">
                         </p>
                         @if (Session::has('success_msg'))
