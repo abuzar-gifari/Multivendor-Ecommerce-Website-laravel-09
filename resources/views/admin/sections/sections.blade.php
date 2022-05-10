@@ -9,6 +9,11 @@
                         <h4 class="card-title">Sections</h4>
                         <p class="card-description">
                         </p>
+                        @if (Session::has('success_msg'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong></strong>{{ Session::get('success_msg') }} 
+                            </div>    
+                        @endif
                         <div class="table-responsive pt-3">
                             <table id="sections" class="table table-bordered">
                                 <thead>
@@ -51,7 +56,7 @@
                                                 <a href="{{ url('admin/add-edit-section/'.$section['id']) }}">
                                                     <i style="font-size:25px;" class="mdi mdi-pencil-box"></i>
                                                 </a>
-                                                <a href="{{ url('admin/delete-section/'.$section['id']) }}">
+                                                <a class="confirmDelete" href="javascript:void(0)" module="section" moduleid="{{ $section['id'] }}">
                                                     <i style="font-size:25px;" class="mdi mdi-file-excel-box"></i>
                                                 </a>
                                             </td>

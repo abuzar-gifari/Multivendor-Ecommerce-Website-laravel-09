@@ -64,5 +64,6 @@
         <script src="{{ asset('admin') }}/js/Chart.roundedBarCharts.js"></script>
         <script src="{{ asset('admin') }}/js/custom.js"></script>
         <!-- End custom js for this page-->
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </body>
 </html>
