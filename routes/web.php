@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\Admin\SectionController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -69,6 +70,13 @@ Route::prefix('/admin')->group(function(){
 
         // add edit section
         Route::match(['get', 'post'],'/add-edit-section/{id?}',[SectionController::class,'addEditSection']);
+
+        // categories route
+        Route::get('/categories',[CategoryController::class,'categories']);
+
+        // update category status
+        Route::post('/update-category-status',[CategoryController::class,'updateCategoryStatus']);
+
 
     });
 });

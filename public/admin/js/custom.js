@@ -126,4 +126,31 @@ $(document).ready(function(){
 			}
 		})
 	})
+
+
+	/* UPDATE THE CATEGORY STATUS */
+
+	$(document).on("click",".updateCategoryStatus",function(e){
+		e.preventDefault();
+		
+		var status=$(this).children("i").attr('status');
+		var category_id=$(this).attr('category_id');
+		$.ajax({
+			headers: {
+        		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    		},
+			type:"post",
+			url:"/admin/update-category-status",
+			data:{status:status,category_id:category_id},
+			success:function(resp){
+				if (res["status"]==0) {
+					$("#category-"+category_id).html("<i style='font-size:25px;' class='mdi mdi-bookmark-outline' status='Inactive'></i>");
+				}
+			},error:function(){
+				if (res["status"]==1) {
+					$("#category-"+category_id).html("<i style='font-size:25px;' class='mdi mdi-bookmark-check' status='Active'></i>");
+				}
+			}
+		})
+	})
 });
