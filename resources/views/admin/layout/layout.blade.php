@@ -25,12 +25,20 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;500;600;700&display=swap" rel="stylesheet">        
     
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&display=swap" rel="stylesheet">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300;400;500;600&display=swap" rel="stylesheet">
+
         {{-- DATATABLES CSS ADD --}}
         <link rel="stylesheet" href="{{ asset('admin') }}/css/bootstrap.css">
         <link rel="stylesheet" href="{{ asset('admin') }}/css/dataTables.bootstrap4.min.css">
     </head>
     <body>
-        <div class="container-scroller" style="font-family: 'Work Sans', sans-serif;">
+        <div class="container-scroller" style="font-family: 'Signika', sans-serif;">
             <!-- partial:partials/_navbar.html -->
             @includeIf('admin.layout.header')
             <!-- partial -->

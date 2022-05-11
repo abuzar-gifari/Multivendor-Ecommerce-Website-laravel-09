@@ -169,7 +169,7 @@ $(document).ready(function(){
 			success:function(resp){
 				$("#appendCategoriesLevel").html(resp);
 			},error:function(){
-				alert("error");
+				// alert("error");
 			}
 		})
 	})

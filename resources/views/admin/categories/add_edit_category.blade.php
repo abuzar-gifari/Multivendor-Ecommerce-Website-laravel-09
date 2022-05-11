@@ -6,7 +6,7 @@
             <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Category Form</h4>
+                        <h4 class="card-title text-center">Category Add/Edit Form</h4>
 
                         @if (Session::has('error_msg'))
                             <div class="alert alert-warning alert-dismissible fade show" role="alert">
