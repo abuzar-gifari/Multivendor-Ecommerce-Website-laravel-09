@@ -6,7 +6,7 @@
             <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Section</h4>
+                        <h4 class="card-title">Brand Add/Edit</h4>
 
                         @if (Session::has('error_msg'))
                             <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -23,21 +23,21 @@
                             class="forms-sample" 
                             method="post"
                             enctype="multipart/form-data" 
-                            @if (empty($section['id']))
-                                action="{{ url('/admin/add-edit-section') }}"    
+                            @if (empty($brand['id']))
+                                action="{{ url('/admin/add-edit-brand') }}"    
                             @else
-                                action="{{ url('/admin/add-edit-section/'.$section['id']) }}"
+                                action="{{ url('/admin/add-edit-brand/'.$brand['id']) }}"
                             @endif
                         >
                             @csrf
                             
                             <div class="form-group">
-                                <label for="section_name">Section Name</label>
-                                <input type="text" class="form-control" id="section_name" name="section_name" placeholder="Enter Section Name" 
-                                @if (!empty($section['name']))
-                                    value="{{ $section['name'] }}"
+                                <label for="brand_name">Brand Name</label>
+                                <input type="text" class="form-control" id="brand_name" name="brand_name" placeholder="Enter Brand Name" 
+                                @if (!empty($brand['name']))
+                                    value="{{ $brand['name'] }}"
                                 @else
-                                    value="{{ old('name') }}"
+                                    value="{{ old($brand['name']) }}"
                                 @endif 
                                 >
                             </div>

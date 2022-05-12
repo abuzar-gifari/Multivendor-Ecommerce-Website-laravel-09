@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\admin\BrandController;
 use App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
@@ -59,6 +60,9 @@ Route::prefix('/admin')->group(function(){
         // view vendor details
         Route::get('view-vendor-details/{id}',[AdminController::class,'ViewVendorDetails']);
 
+
+        /* SECTION ROUTE START */
+
         // sections
         Route::get('/sections',[SectionController::class,'sections']);
 
@@ -70,6 +74,11 @@ Route::prefix('/admin')->group(function(){
 
         // add edit section
         Route::match(['get', 'post'],'/add-edit-section/{id?}',[SectionController::class,'addEditSection']);
+
+        /* SECTION ROUTE END */
+
+
+        /* CATEGORY ROUTE START */
 
         // categories route
         Route::get('/categories',[CategoryController::class,'categories']);
@@ -83,6 +92,24 @@ Route::prefix('/admin')->group(function(){
         // append categories level
         Route::get('/append-categories-level',[CategoryController::class,'appendCategoriesLevel']);
 
+        /* CATEGORY ROUTE END */
 
+
+        /* BRAND ROUTE START */
+
+        // brands
+        Route::get('/brands',[BrandController::class,'brands']);
+
+        // update brand status
+        Route::post('/update-brand-status',[BrandController::class,'updateBrandStatus']);
+
+        // delete brand
+        Route::get('/delete-brand/{id}',[BrandController::class,'DeleteBrand']);
+
+        // add edit brand
+        Route::match(['get', 'post'],'/add-edit-brand/{id?}',[BrandController::class,'addEditBrand']);
+
+        /* BRAND ROUTE END */
+        
     });
 });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Section;
+use Exception;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -48,6 +49,8 @@ class CategoryController extends Controller
             if ($request->file('category_image')){
                 $newName = 'categories_'.time().'.'.$request->file('category_image')->getClientOriginalExtension();
                 $request->category_image->move('admin/images/category_image/',$newName);
+                /* category images should be placed in front folder (not admin) */
+                // Category::insert(['category_image'=>$newName]);
             }
 
             $category->parent_id=$data['parent_id'];
