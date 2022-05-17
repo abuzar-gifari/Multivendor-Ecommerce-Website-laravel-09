@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\BrandController;
+use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
@@ -110,6 +111,18 @@ Route::prefix('/admin')->group(function(){
         Route::match(['get', 'post'],'/add-edit-brand/{id?}',[BrandController::class,'addEditBrand']);
 
         /* BRAND ROUTE END */
+
+
+        /* PRODUCTS ROUTE START */
         
+        //products
+        Route::get('/products',[ProductController::class,'products']);
+
+        // update product status
+        Route::post('/update-product-status',[ProductController::class,'updateProductStatus']);
+
+        // delete product
+        Route::get('/delete-product/{id}',[ProductController::class,'DeleteProduct']);
+
     });
 });
