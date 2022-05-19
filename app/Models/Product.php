@@ -10,4 +10,12 @@ class Product extends Model
     use HasFactory;
     protected $guarded=[];
     protected $table="products";
+
+    public function section(){
+        return $this->belongsTo(Section::class,'section_id');
+    }
+
+    public function category(){
+        return $this->belongsTo(Category::class,'category_id');
+    }
 }

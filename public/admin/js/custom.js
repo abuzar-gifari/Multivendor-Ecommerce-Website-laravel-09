@@ -66,6 +66,18 @@ $(document).ready(function(){
 
 	/* UPDATE THE SECTION STATUS */
 
+	/*
+	@if ($section['status']==1)
+		<a href="javascript:void(0)" class="updateSectionStatus" id="{{ $section['id'] }}" section_id="{{ $section['id'] }}">
+			<i style="font-size:25px;" class="mdi mdi-bookmark-check" status="Active"></i>
+		</a>
+	@else
+		<a href="javascript:void(0)" class="updateSectionStatus" id="{{ $section['id'] }}" section_id="{{ $section['id'] }}">
+			<i style="font-size:25px;" class="mdi mdi-bookmark-outline" status="Inactive"></i>
+		</a>
+	@endif
+	*/
+
 	$(document).on("click",".updateSectionStatus",function(e){
 		e.preventDefault();
 		
