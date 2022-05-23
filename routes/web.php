@@ -124,5 +124,7 @@ Route::prefix('/admin')->group(function(){
         // delete product
         Route::get('/delete-product/{id}',[ProductController::class,'DeleteProduct']);
 
+        // add edit product
+        Route::match(['get', 'post'],'/add-edit-product/{id?}',[ProductController::class,'addEditProduct']);
     });
 });

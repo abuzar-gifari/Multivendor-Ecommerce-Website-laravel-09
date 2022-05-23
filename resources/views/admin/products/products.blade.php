@@ -8,7 +8,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Products</h4>
 
-                        <a href="{{ url('') }}" class="btn btn-block btn-primary" style="max-width:150px; float:right; display:inline-block;">
+                        <a href="{{ url('/admin/add-edit-product') }}" class="btn btn-block btn-primary" style="max-width:150px; float:right; display:inline-block;">
                             Add Products
                         </a>
 
