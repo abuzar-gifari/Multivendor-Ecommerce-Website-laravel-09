@@ -24,13 +24,12 @@
                             method="post"
                             enctype="multipart/form-data" 
                             @if (empty($product['id']))
-                                action="{{ url('/admin/add-edit-category') }}"    
+                                action="{{ url('/admin/add-edit-product') }}"    
                             @else
-                                action="{{ url('/admin/add-edit-category/'.$product['id']) }}"
+                                action="{{ url('/admin/add-edit-product/'.$product['id']) }}"
                             @endif
                         >
                             @csrf
-                            
                             <div class="form-group">
                                 <label for="category_id">Select Category</label>
                                 <select name="category_id" id="category_id" class="form-control">
@@ -38,9 +37,9 @@
                                     @foreach ($categories as $section)
                                         <optgroup label="{{ $section['name'] }}"></optgroup>
                                         @foreach ($section['categories'] as $category)
-                                            <option value="{{ $category['category_name'] }}">&nbsp;&nbsp;&nbsp;--&nbsp;{{ $category['category_name'] }}</option>
+                                            <option value="{{ $category['id'] }}">&nbsp;&nbsp;&nbsp;--&nbsp;{{ $category['category_name'] }}</option>
                                             @foreach ($category['subcategories'] as $subcategory)
-                                                <option value="{{ $subcategory['category_name'] }}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;{{ $subcategory['category_name'] }}</option>
+                                                <option value="{{ $subcategory['id'] }}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;{{ $subcategory['category_name'] }}</option>
                                             @endforeach
                                         @endforeach
                                     @endforeach
