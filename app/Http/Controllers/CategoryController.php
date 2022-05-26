@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Section;
 use Exception;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class CategoryController extends Controller
 {
@@ -45,18 +46,20 @@ class CategoryController extends Controller
         if ($request->isMethod('post')) {
             $data = $request->all();
 
-            // FOR IMAGE UPLOAD
-            if ($request->file('category_image')){
-                $newName = 'categories_'.time().'.'.$request->file('category_image')->getClientOriginalExtension();
-                $request->category_image->move('admin/images/category_image/',$newName);
-                /* category images should be placed in front folder (not admin) */
-                // Category::insert(['category_image'=>$newName]);
+            if ($request->hasFile('category_image')) {
+                $image_tmp = $request->file('category_image');
+                if ($image_tmp->isValid()) {
+                    $extension = $image_tmp->getClientOriginalExtension();
+                    $imageName = rand(111,99999).".".$extension;
+                    $imagePath = 'admin/images/category_image/'.$imageName;
+                    Image::make($image_tmp)->save($imagePath);
+                }
             }
 
             $category->parent_id=$data['parent_id'];
             $category->section_id=$data['section_id'];
             $category->category_name =$data['category_name'];
-            $category->category_image =$newName;
+            $category->category_image =$imageName;
             $category->category_discount=$data['category_discount'];
             $category->description=$data['description'];
             $category->url=$data['url'];
