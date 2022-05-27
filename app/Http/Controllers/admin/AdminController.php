@@ -62,9 +62,11 @@ class AdminController extends Controller
             $adminInfo = Auth::guard('admin')->user();
             // dd($adminInfo);
             if ($request->file('admin_img')){
+                // check if the file is exist or not.
                 if(file_exists('admin/images/photos/'.$adminInfo->image)){
                     unlink('admin/images/photos/'.$adminInfo->image);
                 }
+                // create a new name for the file
                 $newName = 'admin_'.time().'.'.$request->file('admin_img')->getClientOriginalExtension();
                 $request->admin_img->move('admin/images/photos/',$newName);
                 //$product->photo($newName);
@@ -220,7 +222,7 @@ class AdminController extends Controller
         return view('admin.admins.view_vendor_details')->with(compact('vendorDetails'));
     }
 
-    // ADMIN STATUS ( ACTIVE OR INACTIVE ) UPDATED
+    // admin status updated
     public function updateAdminStatus(Request $request){
         if ($request->ajax()) {
             $data = $request->all();

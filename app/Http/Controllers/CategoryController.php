@@ -11,13 +11,19 @@ use Intervention\Image\Facades\Image;
 class CategoryController extends Controller
 {
     public function categories(){
+        /*
+            get all the categories belongs with 
+            Category model -> section & parentcategory relation.
+        */
+        
         $categories=Category::with(['section','parentcategory'])->get()->toArray();
         // dd($categories);
         return view('admin.categories.categories')->with(compact('categories'));
     }
 
-    
+    // update category status
     public function updateCategoryStatus(Request $request){
+        // if the request is ajax
         if ($request->ajax()) {
             $data = $request->all();
             if ($data['status']=="Active") {
@@ -30,6 +36,7 @@ class CategoryController extends Controller
         }
     }
 
+    // add or edit the category portion
     public function addEditCategory(Request $request,$id=null){
         if ($id=="") {
             $title = "Add Category";
