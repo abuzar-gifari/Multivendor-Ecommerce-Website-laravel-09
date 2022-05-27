@@ -79,6 +79,19 @@ class ProductController extends Controller
                 }
             }
 
+            // upload product video
+            if ($request->hasFile('product_video')) {
+                $video_tmp = $request->file('product_video');
+                if ($video_tmp->isValid()) {
+                    // upload video in videos folder
+                    $extension = $video_tmp->getClientOriginalExtension();
+                    $videoName = rand(111,99999).'.'.$extension;
+                    $videoPath = 'front/videos/product_videos/';
+                    $video_tmp->move($videoPath,$videoName);
+                    $product->product_video=$videoName; 
+                }
+            }
+
             $categoryDetails = Category::find($data['category_id']);
             $product->section_id=$categoryDetails['section_id'];
             $product->category_id=$data['category_id'];
