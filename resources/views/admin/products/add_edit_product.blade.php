@@ -129,12 +129,12 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="product_image">Product Image</label><br>
-                                <input type="file" name="product_image">
+                                <label for="product_image">Product Image (Recommended size: 1000×1000)</label><br>
+                                <input type="file" name="main_image">
                             </div>
 
                             <div class="form-group">
-                                <label for="product_video">Product Video</label><br>
+                                <label for="product_video">Product Video (Recommended size: Less Than 2 MB)</label><br>
                                 <input type="file" name="product_video">
                             </div>
 
