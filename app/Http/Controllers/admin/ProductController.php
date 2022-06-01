@@ -51,6 +51,9 @@ class ProductController extends Controller
             $message = "Product Added Successfully";
         }else {
             $title="Edit Product";
+            $product = Product::find($id);
+            // echo "<pre>"; print_r($product); die;
+            $message = "Product Updated Successfully";
         }
         // if the request is 'post'
         if ($request->isMethod('post')) {
@@ -131,6 +134,6 @@ class ProductController extends Controller
         $categories=Section::with('categories')->get()->toArray();
         // dd($categories);
         $brands = Brand::where('status',1)->get()->toArray();
-        return view('admin.products.add_edit_product')->with(compact('title','categories','brands'));
+        return view('admin.products.add_edit_product')->with(compact('title','categories','brands','product'));
     }
 }
