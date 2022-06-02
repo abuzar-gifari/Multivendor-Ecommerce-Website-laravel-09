@@ -126,5 +126,12 @@ Route::prefix('/admin')->group(function(){
 
         // add edit product
         Route::match(['get', 'post'],'/add-edit-product/{id?}',[ProductController::class,'addEditProduct']);
+
+        
+        /* ATTRIBUTES ROUTE START */
+
+        // add edit attributes
+        Route::match(['get', 'post'],'/add-edit-attributes/{id}',[ProductController::class,'addAttributes']);
+
     });
 });

@@ -135,5 +135,16 @@ class ProductController extends Controller
         // dd($categories);
         $brands = Brand::where('status',1)->get()->toArray();
         return view('admin.products.add_edit_product')->with(compact('title','categories','brands','product'));
+
+
+    }
+
+    public function addAttributes(Request $request, $id){
+        $product = Product::find($id);
+        if ($request->isMethod('post')) {
+            $data = $request->all();
+            echo "<pre>"; print_r($data); die;
+        }
+        return view('admin.attributes.add_edit_attribute')->with(compact('product'));
     }
 }
