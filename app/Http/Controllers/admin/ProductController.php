@@ -8,6 +8,7 @@ use App\Models\Section;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\ProductsAttributes;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 
@@ -140,10 +141,30 @@ class ProductController extends Controller
     }
 
     public function addAttributes(Request $request, $id){
-        $product = Product::find($id);
+        $product = Product::select('id','product_name','product_code','product_color','product_price')->with('attributes')->find($id);
         if ($request->isMethod('post')) {
             $data = $request->all();
-            echo "<pre>"; print_r($data); die;
+            /*echo "<pre>"; print_r($data); die;*/
+            foreach ($data['sku'] as $key => $value) {
+                if (!empty($value)) {
+
+                    // SKU duplicate check
+                    $skuCount = ProductsAttributes::where('sku',$value)->count();
+                    if ($skuCount>0) {
+                        return redirect()->back()->with('error_msg','SKU Already exists, PLease add another one!!');
+                    }
+
+                    $attribute = new ProductsAttributes();
+                    $attribute->product_id = $id;
+                    $attribute->sku = $value;
+                    $attribute->size = $data['size'][$key];
+                    $attribute->price = $data['price'][$key];
+                    $attribute->stock = $data['stock'][$key];
+                    $attribute->status = 1;
+                    $attribute->save();
+                }
+            }
+            return redirect()->back()->with('success_msg',"Attribute added successfully");
         }
         return view('admin.attributes.add_edit_attribute')->with(compact('product'));
     }

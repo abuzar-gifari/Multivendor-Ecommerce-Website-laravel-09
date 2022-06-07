@@ -245,7 +245,7 @@ $(document).ready(function(){
 		})
 	})
 
-	// Products Attributes Add /Remove
+	// Products Attributes Add/Remove
 	var maxField = 10; //Input fields increment limitation
     var addButton = $(".add_button"); //Add button selector
     var wrapper = $(".field_wrapper"); //Input field wrapper

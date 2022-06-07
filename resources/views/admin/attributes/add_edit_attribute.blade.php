@@ -60,7 +60,64 @@
                             </div>
 
                             <button style="width: 100%" type="submit" class="btn btn-primary mr-2">Submit</button>
-                        </form>
+                        </form><br>
+                        <h4>Product Attributes</h4>
+                        <table id="products" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Id
+                                    </th>
+                                    <th>
+                                        Size
+                                    </th>
+                                    <th>
+                                        SKU
+                                    </th>
+                                    <th>
+                                        Price
+                                    </th>
+                                    <th>
+                                        Stock
+                                    </th>
+                                    <th>
+                                        Actions
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($product['attributes'] as $attribute)
+                                    <tr>
+                                        <td>
+                                            {{ $attribute['id'] }}
+                                        </td>
+                                        <td>
+                                            {{ $attribute['size'] }}
+                                        </td>
+                                        <td>
+                                            {{ $attribute['sku'] }}
+                                        </td>
+                                        <td>
+                                            {{ $attribute['price'] }}
+                                        </td>
+                                        <td>
+                                            {{ $attribute['stock'] }}
+                                        </td>
+                                        <td>
+                                            @if ($attribute['status']==1)
+                                                <a href="javascript:void(0)" class="updateAttributeStatus" id="{{ $attribute['id'] }}" attribute_id="{{ $attribute['id'] }}">
+                                                    <i style="font-size:25px;" class="mdi mdi-bookmark-check" status="Active"></i>
+                                                </a>
+                                            @else
+                                                <a href="javascript:void(0)" class="updateAttributeStatus" id="{{ $attribute['id'] }}" attribute_id="{{ $attribute['id'] }}">
+                                                    <i style="font-size:25px;" class="mdi mdi-bookmark-outline" status="Inactive"></i>
+                                                </a>
+                                            @endif
+                                        </td>
+                                    </tr>    
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
